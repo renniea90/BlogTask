@@ -7,32 +7,34 @@ const Create = () => {
     const [author, setAuthorName] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const user = { title, body, author }
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const blog = { title, body, author }
     
     fetch('http://localhost:8000/blogs/', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(blog)
 
+    }).then (() => {
+        navigate('/');
+        setTitle('');
+        setContent('');
+        setAuthorName('');
     })
-
-    setTitle('');
-    setContent('');
-    setAuthorName('');
 
     }
 
     return (
         <div className="create">
-            <h1>Add new blog</h1>
+            <h1>Add Blog</h1>
             <form onSubmit={handleSubmit}>
                 <label>Title</label>
                 <input
                     type="text"
                     required
                     value={title}
+                    onChange={(event) => setTitle(event.target.value)}
                 />
 
                 <label>Content</label>
@@ -40,6 +42,7 @@ const Create = () => {
                     type="text"
                     required
                     value={body}
+                    onChange={(event) => setContent(event.target.value)}
                 />
 
                 <label>Name of Author</label>
@@ -47,6 +50,7 @@ const Create = () => {
                     type="text"
                     required
                     value={author}
+                    onChange={(event) => setAuthorName(event.target.value)}
                 />
 
                 <button>Submit Blog Entry!</button>
@@ -56,4 +60,5 @@ const Create = () => {
 
     )
 }
+
 export default Create
