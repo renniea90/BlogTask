@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const NavBar = () => {
     return (
         <nav className="navbar">
             <h1>Andy's Blog</h1>
@@ -12,4 +12,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default NavBar
